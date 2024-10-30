@@ -1,0 +1,658 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="laboratorySystemModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Lab_Info">
+          <Key>
+            <PropertyRef Name="LabName" />
+          </Key>
+          <Property Name="LabName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Governorate" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="City" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Street" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Main_Test_Group">
+          <Key>
+            <PropertyRef Name="GroupID" />
+          </Key>
+          <Property Name="GroupID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="GroupName" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="Lab_Name" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Patient">
+          <Key>
+            <PropertyRef Name="PatientID" />
+          </Key>
+          <Property Name="PatientID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Title" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="RefBy" Type="nvarchar" MaxLength="50" />
+          <Property Name="Phone" Type="nvarchar" MaxLength="11" />
+          <Property Name="Gender" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="Age" Type="int" Nullable="false" />
+          <Property Name="AgeUnit" Type="nvarchar" MaxLength="30" Nullable="false" />
+          <Property Name="Date" Type="date" />
+        </EntityType>
+        <EntityType Name="Patient_Test">
+          <Key>
+            <PropertyRef Name="Patient_Test_ID" />
+          </Key>
+          <Property Name="Patient_Test_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TestDate" Type="date" />
+        </EntityType>
+        <EntityType Name="patientResultValue">
+          <Key>
+            <PropertyRef Name="resultID" />
+          </Key>
+          <Property Name="resultID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="testID" Type="int" />
+          <Property Name="patient_id" Type="int" />
+          <Property Name="patient_test_id" Type="int" />
+          <Property Name="ResultValue" Type="varchar" MaxLength="30" />
+        </EntityType>
+        <EntityType Name="Sub_Test">
+          <Key>
+            <PropertyRef Name="SubTestID" />
+          </Key>
+          <Property Name="SubTestID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SubTestName" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="GroupID" Type="int" />
+          <Property Name="Price" Type="int" Nullable="false" />
+          <Property Name="TestUnit" Type="varchar" MaxLength="10" />
+        </EntityType>
+        <EntityType Name="Test_Normal_Value">
+          <Key>
+            <PropertyRef Name="ValueID" />
+          </Key>
+          <Property Name="ValueID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SubTestID" Type="int" />
+          <Property Name="MinValue" Type="varchar(max)" Nullable="false" />
+          <Property Name="MaxValue" Type="varchar(max)" Nullable="false" />
+          <Property Name="Age_gender_cat" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="Username" />
+          </Key>
+          <Property Name="Username" Type="nvarchar" MaxLength="30" Nullable="false" />
+          <Property Name="Lab_Name" Type="nvarchar" MaxLength="50" />
+          <Property Name="Password" Type="nvarchar" MaxLength="30" />
+          <Property Name="Role" Type="nvarchar" MaxLength="30" />
+        </EntityType>
+        <Association Name="FK__Test_Valu__SubTe__5441852A">
+          <End Role="Sub_Test" Type="Self.Sub_Test" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Test_Normal_Value" Type="Self.Test_Normal_Value" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Sub_Test">
+              <PropertyRef Name="SubTestID" />
+            </Principal>
+            <Dependent Role="Test_Normal_Value">
+              <PropertyRef Name="SubTestID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Group_Main_lab_info">
+          <End Role="Lab_Info" Type="Self.Lab_Info" Multiplicity="0..1" />
+          <End Role="Main_Test_Group" Type="Self.Main_Test_Group" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Lab_Info">
+              <PropertyRef Name="LabName" />
+            </Principal>
+            <Dependent Role="Main_Test_Group">
+              <PropertyRef Name="Lab_Name" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Lab_Name">
+          <End Role="Lab_Info" Type="Self.Lab_Info" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="User" Type="Self.User" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Lab_Info">
+              <PropertyRef Name="LabName" />
+            </Principal>
+            <Dependent Role="User">
+              <PropertyRef Name="Lab_Name" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Patient_ID">
+          <End Role="Patient" Type="Self.Patient" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="patientResultValue" Type="Self.patientResultValue" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Patient">
+              <PropertyRef Name="PatientID" />
+            </Principal>
+            <Dependent Role="patientResultValue">
+              <PropertyRef Name="patient_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Patient_Test_ID">
+          <End Role="Patient_Test" Type="Self.Patient_Test" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="patientResultValue" Type="Self.patientResultValue" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Patient_Test">
+              <PropertyRef Name="Patient_Test_ID" />
+            </Principal>
+            <Dependent Role="patientResultValue">
+              <PropertyRef Name="patient_test_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_testID">
+          <End Role="Sub_Test" Type="Self.Sub_Test" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="patientResultValue" Type="Self.patientResultValue" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Sub_Test">
+              <PropertyRef Name="SubTestID" />
+            </Principal>
+            <Dependent Role="patientResultValue">
+              <PropertyRef Name="testID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Function Name="fn_GetAllMainGroupNames" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <ReturnType>
+            <CollectionType>
+              <RowType>
+                <Property Name="GroupName" Type="varchar" MaxLength="100" Nullable="false" />
+              </RowType>
+            </CollectionType>
+          </ReturnType>
+        </Function>
+        <Function Name="fn_GetAllSubTestNames" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="GroupName" Type="varchar" Mode="In" />
+          <ReturnType>
+            <CollectionType>
+              <RowType>
+                <Property Name="SubTestName" Type="varchar" MaxLength="100" Nullable="false" />
+              </RowType>
+            </CollectionType>
+          </ReturnType>
+        </Function>
+        <Function Name="fn_GetNormalValue" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="TestName" Type="varchar" Mode="In" />
+          <Parameter Name="Age_gender_cat" Type="varchar" Mode="In" />
+          <ReturnType>
+            <CollectionType>
+              <RowType>
+                <Property Name="MinValue" Type="varchar(max)" Nullable="false" />
+                <Property Name="MaxValue" Type="varchar(max)" Nullable="false" />
+              </RowType>
+            </CollectionType>
+          </ReturnType>
+        </Function>
+        <Function Name="fn_GetNormalValueForTest" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="TestName" Type="varchar" Mode="In" />
+          <Parameter Name="Age" Type="int" Mode="In" />
+          <Parameter Name="Gender" Type="varchar" Mode="In" />
+          <ReturnType>
+            <CollectionType>
+              <RowType>
+                <Property Name="MinValue" Type="varchar" MaxLength="50" />
+                <Property Name="MaxValue" Type="varchar" MaxLength="50" />
+              </RowType>
+            </CollectionType>
+          </ReturnType>
+        </Function>
+        <Function Name="fn_ReturnPrice" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="decimal">
+          <Parameter Name="TestName" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="get_AllNameMAinGroup" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="get_AllNameSubTests" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="GroupName" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="get_normalvalue" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="TestName" Type="varchar" Mode="In" />
+          <Parameter Name="Age_gender_cat" Type="varchar" Mode="In" />
+        </Function>
+        <EntityContainer Name="laboratorySystemModelStoreContainer">
+          <EntitySet Name="Lab_Info" EntityType="Self.Lab_Info" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Main_Test_Group" EntityType="Self.Main_Test_Group" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Patient" EntityType="Self.Patient" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Patient_Test" EntityType="Self.Patient_Test" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="patientResultValue" EntityType="Self.patientResultValue" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Sub_Test" EntityType="Self.Sub_Test" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Test_Normal_Value" EntityType="Self.Test_Normal_Value" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__Test_Valu__SubTe__5441852A" Association="Self.FK__Test_Valu__SubTe__5441852A">
+            <End Role="Sub_Test" EntitySet="Sub_Test" />
+            <End Role="Test_Normal_Value" EntitySet="Test_Normal_Value" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Group_Main_lab_info" Association="Self.FK_Group_Main_lab_info">
+            <End Role="Lab_Info" EntitySet="Lab_Info" />
+            <End Role="Main_Test_Group" EntitySet="Main_Test_Group" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Lab_Name" Association="Self.FK_Lab_Name">
+            <End Role="Lab_Info" EntitySet="Lab_Info" />
+            <End Role="User" EntitySet="User" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Patient_ID" Association="Self.FK_Patient_ID">
+            <End Role="Patient" EntitySet="Patient" />
+            <End Role="patientResultValue" EntitySet="patientResultValue" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Patient_Test_ID" Association="Self.FK_Patient_Test_ID">
+            <End Role="Patient_Test" EntitySet="Patient_Test" />
+            <End Role="patientResultValue" EntitySet="patientResultValue" />
+          </AssociationSet>
+          <AssociationSet Name="FK_testID" Association="Self.FK_testID">
+            <End Role="Sub_Test" EntitySet="Sub_Test" />
+            <End Role="patientResultValue" EntitySet="patientResultValue" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="laboratorySystemModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <ComplexType Name="fn_GetAllMainGroupNames_Result">
+          <Property Name="GroupName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="fn_GetAllSubTestNames_Result">
+          <Property Name="SubTestName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="fn_GetNormalValue_Result">
+          <Property Name="MinValue" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="MaxValue" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="fn_GetNormalValueForTest_Result">
+          <Property Name="MinValue" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="MaxValue" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </ComplexType>
+        <EntityType Name="Lab_Info">
+          <Key>
+            <PropertyRef Name="LabName" />
+          </Key>
+          <Property Name="LabName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Governorate" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="City" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Street" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Main_Test_Group" Relationship="Self.FK_Group_Main_lab_info" FromRole="Lab_Info" ToRole="Main_Test_Group" />
+          <NavigationProperty Name="Users" Relationship="Self.FK_Lab_Name" FromRole="Lab_Info" ToRole="User" />
+        </EntityType>
+        <EntityType Name="Main_Test_Group">
+          <Key>
+            <PropertyRef Name="GroupID" />
+          </Key>
+          <Property Name="GroupID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="GroupName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Lab_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Lab_Info" Relationship="Self.FK_Group_Main_lab_info" FromRole="Main_Test_Group" ToRole="Lab_Info" />
+        </EntityType>
+        <EntityType Name="Patient">
+          <Key>
+            <PropertyRef Name="PatientID" />
+          </Key>
+          <Property Name="PatientID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Title" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="RefBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Phone" Type="String" MaxLength="11" FixedLength="false" Unicode="true" />
+          <Property Name="Gender" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Age" Type="Int32" Nullable="false" />
+          <Property Name="AgeUnit" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Date" Type="DateTime" Precision="0" />
+          <NavigationProperty Name="patientResultValues" Relationship="Self.FK_Patient_ID" FromRole="Patient" ToRole="patientResultValue" />
+        </EntityType>
+        <EntityType Name="Patient_Test">
+          <Key>
+            <PropertyRef Name="Patient_Test_ID" />
+          </Key>
+          <Property Name="Patient_Test_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TestDate" Type="DateTime" Precision="0" />
+          <NavigationProperty Name="patientResultValues" Relationship="Self.FK_Patient_Test_ID" FromRole="Patient_Test" ToRole="patientResultValue" />
+        </EntityType>
+        <EntityType Name="patientResultValue">
+          <Key>
+            <PropertyRef Name="resultID" />
+          </Key>
+          <Property Name="resultID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="testID" Type="Int32" />
+          <Property Name="patient_id" Type="Int32" />
+          <Property Name="patient_test_id" Type="Int32" />
+          <Property Name="ResultValue" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Patient" Relationship="Self.FK_Patient_ID" FromRole="patientResultValue" ToRole="Patient" />
+          <NavigationProperty Name="Patient_Test" Relationship="Self.FK_Patient_Test_ID" FromRole="patientResultValue" ToRole="Patient_Test" />
+          <NavigationProperty Name="Sub_Test" Relationship="Self.FK_testID" FromRole="patientResultValue" ToRole="Sub_Test" />
+        </EntityType>
+        <EntityType Name="Sub_Test">
+          <Key>
+            <PropertyRef Name="SubTestID" />
+          </Key>
+          <Property Name="SubTestID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SubTestName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="GroupID" Type="Int32" />
+          <Property Name="Price" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="patientResultValues" Relationship="Self.FK_testID" FromRole="Sub_Test" ToRole="patientResultValue" />
+          <NavigationProperty Name="Test_Normal_Value" Relationship="Self.FK__Test_Valu__SubTe__5441852A" FromRole="Sub_Test" ToRole="Test_Normal_Value" />
+          <Property Name="TestUnit" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="Test_Normal_Value">
+          <Key>
+            <PropertyRef Name="ValueID" />
+          </Key>
+          <Property Name="ValueID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SubTestID" Type="Int32" />
+          <Property Name="MinValue" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="MaxValue" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Age_gender_cat" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Sub_Test" Relationship="Self.FK__Test_Valu__SubTe__5441852A" FromRole="Test_Normal_Value" ToRole="Sub_Test" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="Username" />
+          </Key>
+          <Property Name="Username" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Lab_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Password" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="Role" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Lab_Info" Relationship="Self.FK_Lab_Name" FromRole="User" ToRole="Lab_Info" />
+        </EntityType>
+        <Association Name="FK_Group_Main_lab_info">
+          <End Role="Lab_Info" Type="Self.Lab_Info" Multiplicity="0..1" />
+          <End Role="Main_Test_Group" Type="Self.Main_Test_Group" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Lab_Info">
+              <PropertyRef Name="LabName" />
+            </Principal>
+            <Dependent Role="Main_Test_Group">
+              <PropertyRef Name="Lab_Name" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Lab_Name">
+          <End Role="Lab_Info" Type="Self.Lab_Info" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="User" Type="Self.User" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Lab_Info">
+              <PropertyRef Name="LabName" />
+            </Principal>
+            <Dependent Role="User">
+              <PropertyRef Name="Lab_Name" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Patient_ID">
+          <End Role="Patient" Type="Self.Patient" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="patientResultValue" Type="Self.patientResultValue" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Patient">
+              <PropertyRef Name="PatientID" />
+            </Principal>
+            <Dependent Role="patientResultValue">
+              <PropertyRef Name="patient_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Patient_Test_ID">
+          <End Role="Patient_Test" Type="Self.Patient_Test" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="patientResultValue" Type="Self.patientResultValue" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Patient_Test">
+              <PropertyRef Name="Patient_Test_ID" />
+            </Principal>
+            <Dependent Role="patientResultValue">
+              <PropertyRef Name="patient_test_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_testID">
+          <End Role="Sub_Test" Type="Self.Sub_Test" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="patientResultValue" Type="Self.patientResultValue" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Sub_Test">
+              <PropertyRef Name="SubTestID" />
+            </Principal>
+            <Dependent Role="patientResultValue">
+              <PropertyRef Name="testID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Test_Valu__SubTe__5441852A">
+          <End Role="Sub_Test" Type="Self.Sub_Test" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Test_Normal_Value" Type="Self.Test_Normal_Value" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Sub_Test">
+              <PropertyRef Name="SubTestID" />
+            </Principal>
+            <Dependent Role="Test_Normal_Value">
+              <PropertyRef Name="SubTestID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="laboratorySystemEntities1" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Lab_Info" EntityType="Self.Lab_Info" />
+          <EntitySet Name="Main_Test_Group" EntityType="Self.Main_Test_Group" />
+          <EntitySet Name="Patients" EntityType="Self.Patient" />
+          <EntitySet Name="Patient_Test" EntityType="Self.Patient_Test" />
+          <EntitySet Name="patientResultValues" EntityType="Self.patientResultValue" />
+          <EntitySet Name="Sub_Test" EntityType="Self.Sub_Test" />
+          <EntitySet Name="Test_Normal_Value" EntityType="Self.Test_Normal_Value" />
+          <EntitySet Name="Users" EntityType="Self.User" />
+          <AssociationSet Name="FK_Group_Main_lab_info" Association="Self.FK_Group_Main_lab_info">
+            <End Role="Lab_Info" EntitySet="Lab_Info" />
+            <End Role="Main_Test_Group" EntitySet="Main_Test_Group" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Lab_Name" Association="Self.FK_Lab_Name">
+            <End Role="Lab_Info" EntitySet="Lab_Info" />
+            <End Role="User" EntitySet="Users" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Patient_ID" Association="Self.FK_Patient_ID">
+            <End Role="Patient" EntitySet="Patients" />
+            <End Role="patientResultValue" EntitySet="patientResultValues" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Patient_Test_ID" Association="Self.FK_Patient_Test_ID">
+            <End Role="Patient_Test" EntitySet="Patient_Test" />
+            <End Role="patientResultValue" EntitySet="patientResultValues" />
+          </AssociationSet>
+          <AssociationSet Name="FK_testID" Association="Self.FK_testID">
+            <End Role="Sub_Test" EntitySet="Sub_Test" />
+            <End Role="patientResultValue" EntitySet="patientResultValues" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Test_Valu__SubTe__5441852A" Association="Self.FK__Test_Valu__SubTe__5441852A">
+            <End Role="Sub_Test" EntitySet="Sub_Test" />
+            <End Role="Test_Normal_Value" EntitySet="Test_Normal_Value" />
+          </AssociationSet>
+          <FunctionImport Name="fn_GetAllMainGroupNames" IsComposable="true" ReturnType="Collection(laboratorySystemModel.fn_GetAllMainGroupNames_Result)" />
+          <FunctionImport Name="fn_GetAllSubTestNames" IsComposable="true" ReturnType="Collection(laboratorySystemModel.fn_GetAllSubTestNames_Result)">
+          <Parameter Name="GroupName" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="fn_GetNormalValue" IsComposable="true" ReturnType="Collection(laboratorySystemModel.fn_GetNormalValue_Result)">
+            <Parameter Name="TestName" Mode="In" Type="String" />
+            <Parameter Name="Age_gender_cat" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="fn_GetNormalValueForTest" IsComposable="true" ReturnType="Collection(laboratorySystemModel.fn_GetNormalValueForTest_Result)">
+            <Parameter Name="TestName" Mode="In" Type="String" />
+            <Parameter Name="Age" Mode="In" Type="Int32" />
+            <Parameter Name="Gender" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="get_AllNameMAinGroup" ReturnType="Collection(String)" />
+          <FunctionImport Name="get_AllNameSubTests" ReturnType="Collection(String)">
+          <Parameter Name="GroupName" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="get_normalvalue" ReturnType="Collection(laboratorySystemModel.get_normalvalue_Result)">
+            <Parameter Name="TestName" Mode="In" Type="String" />
+            <Parameter Name="Age_gender_cat" Mode="In" Type="String" />
+          </FunctionImport>
+        </EntityContainer>
+        <ComplexType Name="get_normalvalue_Result">
+          <Property Type="String" Name="MinValue" Nullable="false" />
+          <Property Type="String" Name="MaxValue" Nullable="false" />
+        </ComplexType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="laboratorySystemModelStoreContainer" CdmEntityContainer="laboratorySystemEntities1">
+          <EntitySetMapping Name="Lab_Info">
+            <EntityTypeMapping TypeName="laboratorySystemModel.Lab_Info">
+              <MappingFragment StoreEntitySet="Lab_Info">
+                <ScalarProperty Name="LabName" ColumnName="LabName" />
+                <ScalarProperty Name="Governorate" ColumnName="Governorate" />
+                <ScalarProperty Name="City" ColumnName="City" />
+                <ScalarProperty Name="Street" ColumnName="Street" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Main_Test_Group">
+            <EntityTypeMapping TypeName="laboratorySystemModel.Main_Test_Group">
+              <MappingFragment StoreEntitySet="Main_Test_Group">
+                <ScalarProperty Name="GroupID" ColumnName="GroupID" />
+                <ScalarProperty Name="GroupName" ColumnName="GroupName" />
+                <ScalarProperty Name="Lab_Name" ColumnName="Lab_Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Patients">
+            <EntityTypeMapping TypeName="laboratorySystemModel.Patient">
+              <MappingFragment StoreEntitySet="Patient">
+                <ScalarProperty Name="PatientID" ColumnName="PatientID" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="RefBy" ColumnName="RefBy" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="Gender" ColumnName="Gender" />
+                <ScalarProperty Name="Age" ColumnName="Age" />
+                <ScalarProperty Name="AgeUnit" ColumnName="AgeUnit" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Patient_Test">
+            <EntityTypeMapping TypeName="laboratorySystemModel.Patient_Test">
+              <MappingFragment StoreEntitySet="Patient_Test">
+                <ScalarProperty Name="Patient_Test_ID" ColumnName="Patient_Test_ID" />
+                <ScalarProperty Name="TestDate" ColumnName="TestDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="patientResultValues">
+            <EntityTypeMapping TypeName="laboratorySystemModel.patientResultValue">
+              <MappingFragment StoreEntitySet="patientResultValue">
+                <ScalarProperty Name="resultID" ColumnName="resultID" />
+                <ScalarProperty Name="testID" ColumnName="testID" />
+                <ScalarProperty Name="patient_id" ColumnName="patient_id" />
+                <ScalarProperty Name="patient_test_id" ColumnName="patient_test_id" />
+                <ScalarProperty Name="ResultValue" ColumnName="ResultValue" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Sub_Test">
+            <EntityTypeMapping TypeName="laboratorySystemModel.Sub_Test">
+              <MappingFragment StoreEntitySet="Sub_Test">
+                <ScalarProperty Name="TestUnit" ColumnName="TestUnit" />
+                <ScalarProperty Name="SubTestID" ColumnName="SubTestID" />
+                <ScalarProperty Name="SubTestName" ColumnName="SubTestName" />
+                <ScalarProperty Name="GroupID" ColumnName="GroupID" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Test_Normal_Value">
+            <EntityTypeMapping TypeName="laboratorySystemModel.Test_Normal_Value">
+              <MappingFragment StoreEntitySet="Test_Normal_Value">
+                <ScalarProperty Name="ValueID" ColumnName="ValueID" />
+                <ScalarProperty Name="SubTestID" ColumnName="SubTestID" />
+                <ScalarProperty Name="MinValue" ColumnName="MinValue" />
+                <ScalarProperty Name="MaxValue" ColumnName="MaxValue" />
+                <ScalarProperty Name="Age_gender_cat" ColumnName="Age_gender_cat" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Users">
+            <EntityTypeMapping TypeName="laboratorySystemModel.User">
+              <MappingFragment StoreEntitySet="User">
+                <ScalarProperty Name="Username" ColumnName="Username" />
+                <ScalarProperty Name="Lab_Name" ColumnName="Lab_Name" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Role" ColumnName="Role" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionName="laboratorySystemModel.Store.fn_GetAllMainGroupNames" FunctionImportName="fn_GetAllMainGroupNames">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="laboratorySystemModel.fn_GetAllMainGroupNames_Result">
+                <ScalarProperty Name="GroupName" ColumnName="GroupName" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionName="laboratorySystemModel.Store.fn_GetAllSubTestNames" FunctionImportName="fn_GetAllSubTestNames">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="laboratorySystemModel.fn_GetAllSubTestNames_Result">
+                <ScalarProperty Name="SubTestName" ColumnName="SubTestName" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionName="laboratorySystemModel.Store.fn_GetNormalValue" FunctionImportName="fn_GetNormalValue">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="laboratorySystemModel.fn_GetNormalValue_Result">
+                <ScalarProperty Name="MinValue" ColumnName="MinValue" />
+                <ScalarProperty Name="MaxValue" ColumnName="MaxValue" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionName="laboratorySystemModel.Store.fn_GetNormalValueForTest" FunctionImportName="fn_GetNormalValueForTest">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="laboratorySystemModel.fn_GetNormalValueForTest_Result">
+                <ScalarProperty Name="MinValue" ColumnName="MinValue" />
+                <ScalarProperty Name="MaxValue" ColumnName="MaxValue" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="get_AllNameMAinGroup" FunctionName="laboratorySystemModel.Store.get_AllNameMAinGroup" />
+          <FunctionImportMapping FunctionImportName="get_AllNameSubTests" FunctionName="laboratorySystemModel.Store.get_AllNameSubTests" />
+          <FunctionImportMapping FunctionImportName="get_normalvalue" FunctionName="laboratorySystemModel.Store.get_normalvalue">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="laboratorySystemModel.get_normalvalue_Result">
+                <ScalarProperty Name="MinValue" ColumnName="MinValue" />
+                <ScalarProperty Name="MaxValue" ColumnName="MaxValue" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

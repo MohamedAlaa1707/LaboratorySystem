@@ -1,0 +1,204 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "E:\\WindowsFormsApp4\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{A8E99B43-C7BC-4126-AF94-88A19DD7177E}|WindowsFormsApp4\\WindowsFormsApp4.csproj|e:\\windowsformsapp4\\windowsformsapp4\\checksetting.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{A8E99B43-C7BC-4126-AF94-88A19DD7177E}|WindowsFormsApp4\\WindowsFormsApp4.csproj|solutionrelative:windowsformsapp4\\checksetting.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A8E99B43-C7BC-4126-AF94-88A19DD7177E}|WindowsFormsApp4\\WindowsFormsApp4.csproj|E:\\WindowsFormsApp4\\windowsformsapp4\\enterresults.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{A8E99B43-C7BC-4126-AF94-88A19DD7177E}|WindowsFormsApp4\\WindowsFormsApp4.csproj|solutionrelative:windowsformsapp4\\enterresults.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A8E99B43-C7BC-4126-AF94-88A19DD7177E}|WindowsFormsApp4\\WindowsFormsApp4.csproj|e:\\windowsformsapp4\\windowsformsapp4\\managetest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{A8E99B43-C7BC-4126-AF94-88A19DD7177E}|WindowsFormsApp4\\WindowsFormsApp4.csproj|solutionrelative:windowsformsapp4\\managetest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A8E99B43-C7BC-4126-AF94-88A19DD7177E}|WindowsFormsApp4\\WindowsFormsApp4.csproj|e:\\windowsformsapp4\\windowsformsapp4\\managetest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A8E99B43-C7BC-4126-AF94-88A19DD7177E}|WindowsFormsApp4\\WindowsFormsApp4.csproj|solutionrelative:windowsformsapp4\\managetest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A8E99B43-C7BC-4126-AF94-88A19DD7177E}|WindowsFormsApp4\\WindowsFormsApp4.csproj|e:\\windowsformsapp4\\windowsformsapp4\\showresult.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{A8E99B43-C7BC-4126-AF94-88A19DD7177E}|WindowsFormsApp4\\WindowsFormsApp4.csproj|solutionrelative:windowsformsapp4\\showresult.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A8E99B43-C7BC-4126-AF94-88A19DD7177E}|WindowsFormsApp4\\WindowsFormsApp4.csproj|e:\\windowsformsapp4\\windowsformsapp4\\showresults.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{A8E99B43-C7BC-4126-AF94-88A19DD7177E}|WindowsFormsApp4\\WindowsFormsApp4.csproj|solutionrelative:windowsformsapp4\\showresults.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A8E99B43-C7BC-4126-AF94-88A19DD7177E}|WindowsFormsApp4\\WindowsFormsApp4.csproj|e:\\windowsformsapp4\\windowsformsapp4\\useraccount1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A8E99B43-C7BC-4126-AF94-88A19DD7177E}|WindowsFormsApp4\\WindowsFormsApp4.csproj|solutionrelative:windowsformsapp4\\useraccount1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A8E99B43-C7BC-4126-AF94-88A19DD7177E}|WindowsFormsApp4\\WindowsFormsApp4.csproj|E:\\WindowsFormsApp4\\windowsformsapp4\\useraccount1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{A8E99B43-C7BC-4126-AF94-88A19DD7177E}|WindowsFormsApp4\\WindowsFormsApp4.csproj|solutionrelative:windowsformsapp4\\useraccount1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A8E99B43-C7BC-4126-AF94-88A19DD7177E}|WindowsFormsApp4\\WindowsFormsApp4.csproj|e:\\windowsformsapp4\\windowsformsapp4\\directregisteration.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{A8E99B43-C7BC-4126-AF94-88A19DD7177E}|WindowsFormsApp4\\WindowsFormsApp4.csproj|solutionrelative:windowsformsapp4\\directregisteration.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A8E99B43-C7BC-4126-AF94-88A19DD7177E}|WindowsFormsApp4\\WindowsFormsApp4.csproj|e:\\windowsformsapp4\\windowsformsapp4\\login.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{A8E99B43-C7BC-4126-AF94-88A19DD7177E}|WindowsFormsApp4\\WindowsFormsApp4.csproj|solutionrelative:windowsformsapp4\\login.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A8E99B43-C7BC-4126-AF94-88A19DD7177E}|WindowsFormsApp4\\WindowsFormsApp4.csproj|e:\\windowsformsapp4\\windowsformsapp4\\homepage.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{A8E99B43-C7BC-4126-AF94-88A19DD7177E}|WindowsFormsApp4\\WindowsFormsApp4.csproj|solutionrelative:windowsformsapp4\\homepage.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 1126,
+          "SelectedChildIndex": 3,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "UserAccount1.cs [Design]",
+              "DocumentMoniker": "E:\\WindowsFormsApp4\\WindowsFormsApp4\\UserAccount1.cs",
+              "RelativeDocumentMoniker": "WindowsFormsApp4\\UserAccount1.cs",
+              "ToolTip": "E:\\WindowsFormsApp4\\WindowsFormsApp4\\UserAccount1.cs [Design]",
+              "RelativeToolTip": "WindowsFormsApp4\\UserAccount1.cs [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-08-25T10:52:51.231Z",
+              "IsPinned": true,
+              "EditorCaption": " [Design]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "EnterResults.cs [Design]",
+              "DocumentMoniker": "E:\\WindowsFormsApp4\\WindowsFormsApp4\\EnterResults.cs",
+              "RelativeDocumentMoniker": "WindowsFormsApp4\\EnterResults.cs",
+              "ToolTip": "E:\\WindowsFormsApp4\\WindowsFormsApp4\\EnterResults.cs [Design]",
+              "RelativeToolTip": "WindowsFormsApp4\\EnterResults.cs [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-08-25T10:25:06.238Z",
+              "IsPinned": true,
+              "EditorCaption": " [Design]"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:1:0:{e8b06f52-6d01-11d2-aa7d-00c04f990343}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "checksetting.cs [Design]",
+              "DocumentMoniker": "E:\\WindowsFormsApp4\\WindowsFormsApp4\\checksetting.cs",
+              "RelativeDocumentMoniker": "WindowsFormsApp4\\checksetting.cs",
+              "ToolTip": "E:\\WindowsFormsApp4\\WindowsFormsApp4\\checksetting.cs [Design]",
+              "RelativeToolTip": "WindowsFormsApp4\\checksetting.cs [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-07T01:38:36.817Z",
+              "EditorCaption": " [Design]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "ShowResults.cs [Design]",
+              "DocumentMoniker": "E:\\WindowsFormsApp4\\WindowsFormsApp4\\ShowResults.cs",
+              "RelativeDocumentMoniker": "WindowsFormsApp4\\ShowResults.cs",
+              "ToolTip": "E:\\WindowsFormsApp4\\WindowsFormsApp4\\ShowResults.cs [Design]",
+              "RelativeToolTip": "WindowsFormsApp4\\ShowResults.cs [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-07T01:34:56.294Z",
+              "EditorCaption": " [Design]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "ManageTest.cs",
+              "DocumentMoniker": "E:\\WindowsFormsApp4\\WindowsFormsApp4\\ManageTest.cs",
+              "RelativeDocumentMoniker": "WindowsFormsApp4\\ManageTest.cs",
+              "ToolTip": "E:\\WindowsFormsApp4\\WindowsFormsApp4\\ManageTest.cs",
+              "RelativeToolTip": "WindowsFormsApp4\\ManageTest.cs",
+              "ViewState": "AgIAACEAAAAAAAAAAAAQwDAAAABGAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-07T00:24:33.09Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "ManageTest.cs [Design]",
+              "DocumentMoniker": "E:\\WindowsFormsApp4\\WindowsFormsApp4\\ManageTest.cs",
+              "RelativeDocumentMoniker": "WindowsFormsApp4\\ManageTest.cs",
+              "ToolTip": "E:\\WindowsFormsApp4\\WindowsFormsApp4\\ManageTest.cs [Design]",
+              "RelativeToolTip": "WindowsFormsApp4\\ManageTest.cs [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-07T02:28:14.053Z",
+              "EditorCaption": " [Design]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "UserAccount1.cs",
+              "DocumentMoniker": "E:\\WindowsFormsApp4\\WindowsFormsApp4\\UserAccount1.cs",
+              "RelativeDocumentMoniker": "WindowsFormsApp4\\UserAccount1.cs",
+              "ToolTip": "E:\\WindowsFormsApp4\\WindowsFormsApp4\\UserAccount1.cs",
+              "RelativeToolTip": "WindowsFormsApp4\\UserAccount1.cs",
+              "ViewState": "AgIAAGoBAAAAAAAAAAAAAHUBAAAbAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-07T02:09:13.192Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "showResult.cs [Design]",
+              "DocumentMoniker": "E:\\WindowsFormsApp4\\WindowsFormsApp4\\showResult.cs",
+              "RelativeDocumentMoniker": "WindowsFormsApp4\\showResult.cs",
+              "ToolTip": "E:\\WindowsFormsApp4\\WindowsFormsApp4\\showResult.cs [Design]",
+              "RelativeToolTip": "WindowsFormsApp4\\showResult.cs [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-07T01:30:55.396Z",
+              "EditorCaption": " [Design]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "DirectRegisteration.cs [Design]",
+              "DocumentMoniker": "E:\\WindowsFormsApp4\\WindowsFormsApp4\\DirectRegisteration.cs",
+              "RelativeDocumentMoniker": "WindowsFormsApp4\\DirectRegisteration.cs",
+              "ToolTip": "E:\\WindowsFormsApp4\\WindowsFormsApp4\\DirectRegisteration.cs [Design]",
+              "RelativeToolTip": "WindowsFormsApp4\\DirectRegisteration.cs [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-07T01:15:17.626Z",
+              "EditorCaption": " [Design]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "Login.cs [Design]",
+              "DocumentMoniker": "E:\\WindowsFormsApp4\\WindowsFormsApp4\\Login.cs",
+              "RelativeDocumentMoniker": "WindowsFormsApp4\\Login.cs",
+              "ToolTip": "E:\\WindowsFormsApp4\\WindowsFormsApp4\\Login.cs [Design]",
+              "RelativeToolTip": "WindowsFormsApp4\\Login.cs [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-07T00:28:26.832Z",
+              "EditorCaption": " [Design]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "HomePage.cs [Design]",
+              "DocumentMoniker": "E:\\WindowsFormsApp4\\WindowsFormsApp4\\HomePage.cs",
+              "RelativeDocumentMoniker": "WindowsFormsApp4\\HomePage.cs",
+              "ToolTip": "E:\\WindowsFormsApp4\\WindowsFormsApp4\\HomePage.cs [Design]",
+              "RelativeToolTip": "WindowsFormsApp4\\HomePage.cs [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-07T00:00:00.268Z",
+              "EditorCaption": " [Design]"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,130 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="laboratorySystemModelStoreContainer" CdmEntityContainer="laboratorySystemEntities1">
+    <EntitySetMapping Name="Lab_Info">
+      <EntityTypeMapping TypeName="laboratorySystemModel.Lab_Info">
+        <MappingFragment StoreEntitySet="Lab_Info">
+          <ScalarProperty Name="LabName" ColumnName="LabName" />
+          <ScalarProperty Name="Governorate" ColumnName="Governorate" />
+          <ScalarProperty Name="City" ColumnName="City" />
+          <ScalarProperty Name="Street" ColumnName="Street" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Main_Test_Group">
+      <EntityTypeMapping TypeName="laboratorySystemModel.Main_Test_Group">
+        <MappingFragment StoreEntitySet="Main_Test_Group">
+          <ScalarProperty Name="GroupID" ColumnName="GroupID" />
+          <ScalarProperty Name="GroupName" ColumnName="GroupName" />
+          <ScalarProperty Name="Lab_Name" ColumnName="Lab_Name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Patients">
+      <EntityTypeMapping TypeName="laboratorySystemModel.Patient">
+        <MappingFragment StoreEntitySet="Patient">
+          <ScalarProperty Name="PatientID" ColumnName="PatientID" />
+          <ScalarProperty Name="Title" ColumnName="Title" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="RefBy" ColumnName="RefBy" />
+          <ScalarProperty Name="Phone" ColumnName="Phone" />
+          <ScalarProperty Name="Gender" ColumnName="Gender" />
+          <ScalarProperty Name="Age" ColumnName="Age" />
+          <ScalarProperty Name="AgeUnit" ColumnName="AgeUnit" />
+          <ScalarProperty Name="Date" ColumnName="Date" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Patient_Test">
+      <EntityTypeMapping TypeName="laboratorySystemModel.Patient_Test">
+        <MappingFragment StoreEntitySet="Patient_Test">
+          <ScalarProperty Name="Patient_Test_ID" ColumnName="Patient_Test_ID" />
+          <ScalarProperty Name="TestDate" ColumnName="TestDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="patientResultValues">
+      <EntityTypeMapping TypeName="laboratorySystemModel.patientResultValue">
+        <MappingFragment StoreEntitySet="patientResultValue">
+          <ScalarProperty Name="resultID" ColumnName="resultID" />
+          <ScalarProperty Name="testID" ColumnName="testID" />
+          <ScalarProperty Name="patient_id" ColumnName="patient_id" />
+          <ScalarProperty Name="patient_test_id" ColumnName="patient_test_id" />
+          <ScalarProperty Name="ResultValue" ColumnName="ResultValue" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Sub_Test">
+      <EntityTypeMapping TypeName="laboratorySystemModel.Sub_Test">
+        <MappingFragment StoreEntitySet="Sub_Test">
+          <ScalarProperty Name="TestUnit" ColumnName="TestUnit" />
+          <ScalarProperty Name="SubTestID" ColumnName="SubTestID" />
+          <ScalarProperty Name="SubTestName" ColumnName="SubTestName" />
+          <ScalarProperty Name="GroupID" ColumnName="GroupID" />
+          <ScalarProperty Name="Price" ColumnName="Price" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Test_Normal_Value">
+      <EntityTypeMapping TypeName="laboratorySystemModel.Test_Normal_Value">
+        <MappingFragment StoreEntitySet="Test_Normal_Value">
+          <ScalarProperty Name="ValueID" ColumnName="ValueID" />
+          <ScalarProperty Name="SubTestID" ColumnName="SubTestID" />
+          <ScalarProperty Name="MinValue" ColumnName="MinValue" />
+          <ScalarProperty Name="MaxValue" ColumnName="MaxValue" />
+          <ScalarProperty Name="Age_gender_cat" ColumnName="Age_gender_cat" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Users">
+      <EntityTypeMapping TypeName="laboratorySystemModel.User">
+        <MappingFragment StoreEntitySet="User">
+          <ScalarProperty Name="Username" ColumnName="Username" />
+          <ScalarProperty Name="Lab_Name" ColumnName="Lab_Name" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="Role" ColumnName="Role" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionName="laboratorySystemModel.Store.fn_GetAllMainGroupNames" FunctionImportName="fn_GetAllMainGroupNames">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="laboratorySystemModel.fn_GetAllMainGroupNames_Result">
+          <ScalarProperty Name="GroupName" ColumnName="GroupName" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionName="laboratorySystemModel.Store.fn_GetAllSubTestNames" FunctionImportName="fn_GetAllSubTestNames">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="laboratorySystemModel.fn_GetAllSubTestNames_Result">
+          <ScalarProperty Name="SubTestName" ColumnName="SubTestName" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionName="laboratorySystemModel.Store.fn_GetNormalValue" FunctionImportName="fn_GetNormalValue">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="laboratorySystemModel.fn_GetNormalValue_Result">
+          <ScalarProperty Name="MinValue" ColumnName="MinValue" />
+          <ScalarProperty Name="MaxValue" ColumnName="MaxValue" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionName="laboratorySystemModel.Store.fn_GetNormalValueForTest" FunctionImportName="fn_GetNormalValueForTest">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="laboratorySystemModel.fn_GetNormalValueForTest_Result">
+          <ScalarProperty Name="MinValue" ColumnName="MinValue" />
+          <ScalarProperty Name="MaxValue" ColumnName="MaxValue" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="get_AllNameMAinGroup" FunctionName="laboratorySystemModel.Store.get_AllNameMAinGroup" />
+    <FunctionImportMapping FunctionImportName="get_AllNameSubTests" FunctionName="laboratorySystemModel.Store.get_AllNameSubTests" />
+    <FunctionImportMapping FunctionImportName="get_normalvalue" FunctionName="laboratorySystemModel.Store.get_normalvalue">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="laboratorySystemModel.get_normalvalue_Result">
+          <ScalarProperty Name="MinValue" ColumnName="MinValue" />
+          <ScalarProperty Name="MaxValue" ColumnName="MaxValue" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+  </EntityContainerMapping>
+</Mapping>

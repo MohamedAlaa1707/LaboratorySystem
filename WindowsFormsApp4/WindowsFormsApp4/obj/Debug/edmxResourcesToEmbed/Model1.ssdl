@@ -1,0 +1,251 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="laboratorySystemModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Lab_Info">
+    <Key>
+      <PropertyRef Name="LabName" />
+    </Key>
+    <Property Name="LabName" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Governorate" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="City" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Street" Type="nvarchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Main_Test_Group">
+    <Key>
+      <PropertyRef Name="GroupID" />
+    </Key>
+    <Property Name="GroupID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="GroupName" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="Lab_Name" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Patient">
+    <Key>
+      <PropertyRef Name="PatientID" />
+    </Key>
+    <Property Name="PatientID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Title" Type="nvarchar" MaxLength="10" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="RefBy" Type="nvarchar" MaxLength="50" />
+    <Property Name="Phone" Type="nvarchar" MaxLength="11" />
+    <Property Name="Gender" Type="nvarchar" MaxLength="10" Nullable="false" />
+    <Property Name="Age" Type="int" Nullable="false" />
+    <Property Name="AgeUnit" Type="nvarchar" MaxLength="30" Nullable="false" />
+    <Property Name="Date" Type="date" />
+  </EntityType>
+  <EntityType Name="Patient_Test">
+    <Key>
+      <PropertyRef Name="Patient_Test_ID" />
+    </Key>
+    <Property Name="Patient_Test_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="TestDate" Type="date" />
+  </EntityType>
+  <EntityType Name="patientResultValue">
+    <Key>
+      <PropertyRef Name="resultID" />
+    </Key>
+    <Property Name="resultID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="testID" Type="int" />
+    <Property Name="patient_id" Type="int" />
+    <Property Name="patient_test_id" Type="int" />
+    <Property Name="ResultValue" Type="varchar" MaxLength="30" />
+  </EntityType>
+  <EntityType Name="Sub_Test">
+    <Key>
+      <PropertyRef Name="SubTestID" />
+    </Key>
+    <Property Name="SubTestID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="SubTestName" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="GroupID" Type="int" />
+    <Property Name="Price" Type="int" Nullable="false" />
+    <Property Name="TestUnit" Type="varchar" MaxLength="10" />
+  </EntityType>
+  <EntityType Name="Test_Normal_Value">
+    <Key>
+      <PropertyRef Name="ValueID" />
+    </Key>
+    <Property Name="ValueID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="SubTestID" Type="int" />
+    <Property Name="MinValue" Type="varchar(max)" Nullable="false" />
+    <Property Name="MaxValue" Type="varchar(max)" Nullable="false" />
+    <Property Name="Age_gender_cat" Type="varchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="User">
+    <Key>
+      <PropertyRef Name="Username" />
+    </Key>
+    <Property Name="Username" Type="nvarchar" MaxLength="30" Nullable="false" />
+    <Property Name="Lab_Name" Type="nvarchar" MaxLength="50" />
+    <Property Name="Password" Type="nvarchar" MaxLength="30" />
+    <Property Name="Role" Type="nvarchar" MaxLength="30" />
+  </EntityType>
+  <Association Name="FK__Test_Valu__SubTe__5441852A">
+    <End Role="Sub_Test" Type="Self.Sub_Test" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Test_Normal_Value" Type="Self.Test_Normal_Value" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Sub_Test">
+        <PropertyRef Name="SubTestID" />
+      </Principal>
+      <Dependent Role="Test_Normal_Value">
+        <PropertyRef Name="SubTestID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Group_Main_lab_info">
+    <End Role="Lab_Info" Type="Self.Lab_Info" Multiplicity="0..1" />
+    <End Role="Main_Test_Group" Type="Self.Main_Test_Group" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Lab_Info">
+        <PropertyRef Name="LabName" />
+      </Principal>
+      <Dependent Role="Main_Test_Group">
+        <PropertyRef Name="Lab_Name" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Lab_Name">
+    <End Role="Lab_Info" Type="Self.Lab_Info" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="User" Type="Self.User" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Lab_Info">
+        <PropertyRef Name="LabName" />
+      </Principal>
+      <Dependent Role="User">
+        <PropertyRef Name="Lab_Name" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Patient_ID">
+    <End Role="Patient" Type="Self.Patient" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="patientResultValue" Type="Self.patientResultValue" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Patient">
+        <PropertyRef Name="PatientID" />
+      </Principal>
+      <Dependent Role="patientResultValue">
+        <PropertyRef Name="patient_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Patient_Test_ID">
+    <End Role="Patient_Test" Type="Self.Patient_Test" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="patientResultValue" Type="Self.patientResultValue" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Patient_Test">
+        <PropertyRef Name="Patient_Test_ID" />
+      </Principal>
+      <Dependent Role="patientResultValue">
+        <PropertyRef Name="patient_test_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_testID">
+    <End Role="Sub_Test" Type="Self.Sub_Test" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="patientResultValue" Type="Self.patientResultValue" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Sub_Test">
+        <PropertyRef Name="SubTestID" />
+      </Principal>
+      <Dependent Role="patientResultValue">
+        <PropertyRef Name="testID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Function Name="fn_GetAllMainGroupNames" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <ReturnType>
+      <CollectionType>
+        <RowType>
+          <Property Name="GroupName" Type="varchar" MaxLength="100" Nullable="false" />
+        </RowType>
+      </CollectionType>
+    </ReturnType>
+  </Function>
+  <Function Name="fn_GetAllSubTestNames" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="GroupName" Type="varchar" Mode="In" />
+    <ReturnType>
+      <CollectionType>
+        <RowType>
+          <Property Name="SubTestName" Type="varchar" MaxLength="100" Nullable="false" />
+        </RowType>
+      </CollectionType>
+    </ReturnType>
+  </Function>
+  <Function Name="fn_GetNormalValue" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="TestName" Type="varchar" Mode="In" />
+    <Parameter Name="Age_gender_cat" Type="varchar" Mode="In" />
+    <ReturnType>
+      <CollectionType>
+        <RowType>
+          <Property Name="MinValue" Type="varchar(max)" Nullable="false" />
+          <Property Name="MaxValue" Type="varchar(max)" Nullable="false" />
+        </RowType>
+      </CollectionType>
+    </ReturnType>
+  </Function>
+  <Function Name="fn_GetNormalValueForTest" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="TestName" Type="varchar" Mode="In" />
+    <Parameter Name="Age" Type="int" Mode="In" />
+    <Parameter Name="Gender" Type="varchar" Mode="In" />
+    <ReturnType>
+      <CollectionType>
+        <RowType>
+          <Property Name="MinValue" Type="varchar" MaxLength="50" />
+          <Property Name="MaxValue" Type="varchar" MaxLength="50" />
+        </RowType>
+      </CollectionType>
+    </ReturnType>
+  </Function>
+  <Function Name="fn_ReturnPrice" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="decimal">
+    <Parameter Name="TestName" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="get_AllNameMAinGroup" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="get_AllNameSubTests" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="GroupName" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="get_normalvalue" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="TestName" Type="varchar" Mode="In" />
+    <Parameter Name="Age_gender_cat" Type="varchar" Mode="In" />
+  </Function>
+  <EntityContainer Name="laboratorySystemModelStoreContainer">
+    <EntitySet Name="Lab_Info" EntityType="Self.Lab_Info" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Main_Test_Group" EntityType="Self.Main_Test_Group" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Patient" EntityType="Self.Patient" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Patient_Test" EntityType="Self.Patient_Test" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="patientResultValue" EntityType="Self.patientResultValue" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Sub_Test" EntityType="Self.Sub_Test" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Test_Normal_Value" EntityType="Self.Test_Normal_Value" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK__Test_Valu__SubTe__5441852A" Association="Self.FK__Test_Valu__SubTe__5441852A">
+      <End Role="Sub_Test" EntitySet="Sub_Test" />
+      <End Role="Test_Normal_Value" EntitySet="Test_Normal_Value" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Group_Main_lab_info" Association="Self.FK_Group_Main_lab_info">
+      <End Role="Lab_Info" EntitySet="Lab_Info" />
+      <End Role="Main_Test_Group" EntitySet="Main_Test_Group" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Lab_Name" Association="Self.FK_Lab_Name">
+      <End Role="Lab_Info" EntitySet="Lab_Info" />
+      <End Role="User" EntitySet="User" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Patient_ID" Association="Self.FK_Patient_ID">
+      <End Role="Patient" EntitySet="Patient" />
+      <End Role="patientResultValue" EntitySet="patientResultValue" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Patient_Test_ID" Association="Self.FK_Patient_Test_ID">
+      <End Role="Patient_Test" EntitySet="Patient_Test" />
+      <End Role="patientResultValue" EntitySet="patientResultValue" />
+    </AssociationSet>
+    <AssociationSet Name="FK_testID" Association="Self.FK_testID">
+      <End Role="Sub_Test" EntitySet="Sub_Test" />
+      <End Role="patientResultValue" EntitySet="patientResultValue" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
